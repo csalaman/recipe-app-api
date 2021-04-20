@@ -1,0 +1,14 @@
+# Docker compose version
+version: "3"
+
+# Services
+services: 
+    app: # Name of service
+        build:
+            context: . # Current directory
+        ports:
+            - "8000:8000" # host:image ports
+        volumes: # Map source code to location in Docker (will automatically pull changes)
+            - ./app:/app
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
