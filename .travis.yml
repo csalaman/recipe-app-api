@@ -1,0 +1,15 @@
+# Define language
+language: python
+python:
+  - "3.9"
+
+# Define services (docker contains the rest of the services)
+services:
+  - docker
+
+# Execute before automation setup (install docker compose)
+before_script: pip install docker-compose
+
+# Command to run
+script:
+  - docker-compose run app sh -c "python manage.py test && flaked"
